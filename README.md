@@ -4,7 +4,7 @@ Programa basado en C++ y arduino que permite al usuario controlar a su mascota y
 ## Integrantes del equipo
 
 Jimena López Maldonado -> Jimenalopez02 .
-Goyo Marianini Ríos -> gmarianini .
+Gregorio Marianini Ríos -> gmarianini .
 Juan Ignacio Martín-> juanignacio-martin .
 
 ## Objetivos del trabajo

@@ -1,0 +1,31 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define N 100
+
+enum Estado_perro{perro_dentro,perro_fuera};
+
+enum Estado_puerta{Puerta_abierta, puerta_cerrada};
+
+int h_abrir_puerta, h_cerrar_puerta;
+
+typedef struct {
+	int numero_comidas;
+
+	int hora_comidas[N];
+
+	float nivel_agua;
+}Alimentos;
+
+
+
+
+
+
+int menu_ppal(void)
+{
+	printf("\n ------------------------ \n");
+	printf("1 - Parametros de control para el bienestar del animal:\n");
+	printf("2 - Control de comidas:\n");
+	printf("3 - Control agua:\n");
+	printf("4 - Estado puerta:\n");
+}

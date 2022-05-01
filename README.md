@@ -20,7 +20,7 @@ entre y salga para mantener al tanto al dueño, serán funciones automáticas.
 - Sensor Ultrasonido
 Los sensores ultrasónicos miden la distancia mediante el uso de ondas ultrasónicas. El cabezal emite una onda ultrasónica y recibe la onda reflejada que retorna desde el objeto. Los sensores ultrasónicos miden la distancia al objeto contando el tiempo entre la emisión y la recepción.
 - Sensor infrarojo 
-el sensor infrarrojo es un dispositivo optoelectrónico capaz de medir la radiación electromagnética infrarroja de los cuerpos en su campo de visión. Todos los cuerpos emiten una cierta cantidad de radiación, esta resulta invisible para nuestros ojos pero no para estos aparatos electrónicos, ya que se encuentran en el rango del espectro justo por debajo de la luz visible.
+Un sensor PIR (sensores infrarrojos pasivos) es un dispositivo que detecta movimiento; recuerda!!, te aproximas a la puerta y esta se abre. Son baratos, pequeños, y fáciles de usar. Por esta razón son frecuentemente usados en juguetes, aplicaciones domóticas o sistemas de seguridad.
 - Alarma
 - Medida de intensidad luminosa- Sensor de luz LDR GL55:
 

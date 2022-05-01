@@ -17,9 +17,9 @@ agua esté siempre lleno, que la puerta de la casa de la mascota se cierre por l
 noche y se abra por el día , así como que se emita un sonido cada vez que el perro
 entre y salga para mantener al tanto al dueño, serán funciones automáticas.
 ## Sensores a utilizar
--Sensor Ultrasonido
+- Sensor Ultrasonido
 Los sensores ultrasónicos miden la distancia mediante el uso de ondas ultrasónicas. El cabezal emite una onda ultrasónica y recibe la onda reflejada que retorna desde el objeto. Los sensores ultrasónicos miden la distancia al objeto contando el tiempo entre la emisión y la recepción.
--Sensor infrarojo 
+- Sensor infrarojo 
 el sensor infrarrojo es un dispositivo optoelectrónico capaz de medir la radiación electromagnética infrarroja de los cuerpos en su campo de visión. Todos los cuerpos emiten una cierta cantidad de radiación, esta resulta invisible para nuestros ojos pero no para estos aparatos electrónicos, ya que se encuentran en el rango del espectro justo por debajo de la luz visible.
 - Alarma
 - Medida de intensidad luminosa- Sensor de luz LDR GL55:

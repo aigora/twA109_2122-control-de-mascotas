@@ -28,3 +28,9 @@ Fuente: https://www.luisllamas.es/medir-nivel-luz-con-arduino-y-fotoresistencia-
 | Dispensador de comida |
 | Encendido de luces |
 | Control temperatura de la caseta |
+## Opción 1
+El usuario deberá introducir la altura a la que quiere que esté la comida en función del recipiente. Si esta altura es inferior, el comedero echará comida hasta que se consiga dicha altura.
+## Opción 2
+Habrá unas luces situadas en la facahada de la caseta de tal manera que se encenderá cuado se haga de noche para que la mascota pueda situarse.
+## Opción 3 
+Si se supera un cierto nivel de temperatura dentro de la caseta , el programa avisará al usuario de la temperatura límite.

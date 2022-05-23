@@ -23,7 +23,8 @@ Fuente: https://www.luisllamas.es/medir-nivel-luz-con-arduino-y-fotoresistencia-
 - Micro Servo 9g SG90 de Tower Pro
 
 ## Dinámica de la aplicación
-|Menú|
-| Dispensador de comida|
+| Menú |
+| ~~~ |
+| Dispensador de comida |
 | Encendido de luces |
 | Control temperatura de la caseta |

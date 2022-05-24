@@ -27,7 +27,7 @@ MENU:
 1. Dispensador de comida
 2. Iluminación
 3. Control temperatura de la caseta
-4. 4. Automático de luces.
+4. Automático de luces.
 ## Opción 1
 El usuario deberá introducir la altura a la que quiere que esté la comida en función del recipiente. Si esta altura es inferior, el comedero echará comida hasta que se consiga dicha altura.
 ## Opción 2

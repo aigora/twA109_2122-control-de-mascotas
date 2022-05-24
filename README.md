@@ -23,11 +23,11 @@ Fuente: https://www.luisllamas.es/medir-nivel-luz-con-arduino-y-fotoresistencia-
 - Micro Servo 9g SG90 de Tower Pro
 
 ## Dinámica de la aplicación
-| Menú |
-| ~~~ |
-| Dispensador de comida |
-| Encendido de luces |
-| Control temperatura de la caseta |
+       Menú
+       ~~~
+1. Dispensador de comida
+2. Encendido de luces
+3. Control temperatura de la caseta
 ## Opción 1
 El usuario deberá introducir la altura a la que quiere que esté la comida en función del recipiente. Si esta altura es inferior, el comedero echará comida hasta que se consiga dicha altura.
 ## Opción 2

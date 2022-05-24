@@ -107,10 +107,10 @@ int menu_principal(void)
 { int opcion; 
 do 
 { 
-	printf("1 - Abrir o cerrar el toldo\n");
-	printf("2 - Leer temperatura\n"); 
+	printf("1 - Mostrar el nivel de agua del bebedero\n");
+	printf("2 - Leer temperatura de la caseta\n"); 
 	printf("3 - Encendido/Apagado de luces\n");
-	printf("4 - Leer nivel del agua\n"); 
+	printf("4 - Elegir nivel del agua\n"); 
 	printf("5 - Automatico\n");
 	printf("6 - Cerrar Aplicación\n");
 	printf("Seleccione opción: "); 
@@ -225,10 +225,8 @@ void elegir_nivel_bebedero(Serial* Arduino)
 	char mensaje_in[255];
 	char mensaje_out[] = "NIVEL_BEBEDERO_CONSIGNA"; 
 	float nivel, x; 
-	int volumen, altura = 13;
-	int a = 12, b = 12, c = 6;
-	volumen = a * b * c;
-	printf("\nEl volumen de su piscina es %d cm3", volumen);
+	int altura = 13;
+	printf("\nç);
 	printf("\nElija el nivel de agua maximo al que quiere que este su piscina(en cm) :");
 	scanf_s("%d", &x); 
 	nivel = altura - x; 

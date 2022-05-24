@@ -25,11 +25,14 @@ Fuente: https://www.luisllamas.es/medir-nivel-luz-con-arduino-y-fotoresistencia-
 ## Dinámica de la aplicación
 MENU:
 1. Dispensador de comida
-2. Encendido de luces
+2. Iluminación
 3. Control temperatura de la caseta
+4. 4. Automático de luces.
 ## Opción 1
 El usuario deberá introducir la altura a la que quiere que esté la comida en función del recipiente. Si esta altura es inferior, el comedero echará comida hasta que se consiga dicha altura.
 ## Opción 2
-Habrá unas luces situadas en la facahada de la caseta de tal manera que se encenderá cuado se haga de noche para que la mascota pueda situarse.
+Habrá unas luces situadas en la facahada de la caseta de tal manera que se encenderá cuado el usuario lo indique.
 ## Opción 3 
 Si se supera un cierto nivel de temperatura dentro de la caseta , el programa avisará al usuario de la temperatura límite.
+## Opción 4 
+Iluminación automática en función de la oscuridad.

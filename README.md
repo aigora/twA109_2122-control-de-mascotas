@@ -59,7 +59,6 @@ void Talk_with_Arduino(Serial* Arduino);
 void Send_to_hw(Serial*, char*);
 int Receive_from_hw(Serial* Arduino, char* BufferEntrada);
 int Send_and_Receive(Serial* Arduino, const char* msg_out, int valor_out, char* msg_in, int* valor_in);
-//void monitorizar_aforo(Serial*);
 void mostrar_temp(Serial*);
 void luces(Serial*);
 void automatico(Serial*);

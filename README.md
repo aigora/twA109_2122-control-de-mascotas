@@ -133,11 +133,11 @@ void mostrar_temp(Serial* Arduino)
 		temp2 = (float)temp / 100; printf("\nLa temperatura de la caseta es %.2fºC", temp2);
 		if(temp2>=30){
 		
-		printf("La temperatura de la caseta es muy elevada,revise el estado de su mascota);
+		printf("La temperatura de la caseta es muy elevada,revise el estado de su mascota\n");
 		}
 		else
 		{
-		printf("La temperatura de la caseta esta a una temperatura correcta");
+		printf("La temperatura de la caseta esta a una temperatura correcta\n");
 	        }
 }
 

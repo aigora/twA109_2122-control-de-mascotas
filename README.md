@@ -59,14 +59,14 @@ void Talk_with_Arduino(Serial* Arduino);
 void Send_to_hw(Serial*, char*);
 int Receive_from_hw(Serial* Arduino, char* BufferEntrada);
 int Send_and_Receive(Serial* Arduino, const char* msg_out, int valor_out, char* msg_in, int* valor_in);
-void monitorizar_aforo(Serial*);
+//void monitorizar_aforo(Serial*);
 void mostrar_temp(Serial*);
 void luces(Serial*);
 void automatico(Serial*);
 void apagar_luces(Serial*);
 void encender_luces(Serial*);
-void mostrar_nivel_comida(Serial*);
-void elegir_nivel_comida_minima(Serial*);
+void mostrar_nivel_bebedero(Serial*);
+void elegir_nivel_bebedero(Serial*);
 
 int main(void) 
 {
@@ -82,7 +82,7 @@ int main(void)
 		switch (opc)
 		{
 		case 1:
-			mostrar_nivel_agua(Arduino);
+			mostrar_nivel_bebedero(Arduino);
 			break;
 		case 2:
 			mostrar_temp(Arduino);
@@ -130,8 +130,15 @@ void mostrar_temp(Serial* Arduino)
 	bytes_recibidos = Send_and_Receive(Arduino, "MOSTRAR_TEMP", 1, mensaje_in, &temp);
 	if (bytes_recibidos != 0)
 	{ 
-		temp2 = (float)temp / 100; printf("\nLa temperatura es %.2fºC", temp2);
-	}
+		temp2 = (float)temp / 100; printf("\nLa temperatura de la caseta es %.2fºC", temp2);
+		if(temp2>=30){
+		
+		printf("La temperatura de la caseta es muy elevada,revise el estado de su mascota);
+		}
+		else
+		{
+		printf("La temperatura de la caseta esta a una temperatura correcta");
+	        }
 }
 
 void luces(Serial* Arduino)
@@ -145,7 +152,7 @@ void luces(Serial* Arduino)
 	{
 		if (mensaje_in[0] == '1') {
 			int siono; 
-			printf("\nLas luces están encendidas, desea apagarlas?\n\t1.Si\n\t2.No\n");
+			printf("\nLas luces de la caseta están encendidas, desea apagarlas?\n\t1.Si\n\t2.No\n");
 			scanf_s("%d", &siono);
 			switch (siono)
 			{
@@ -159,7 +166,7 @@ void luces(Serial* Arduino)
 		else
 		{
 			int siono;
-			printf("\nLas luces están apagadas, desea encenderlas?\n\t1.Si\n\t2.No\n");
+			printf("\nLas luces de la caseta están apagadas, desea encenderlas?\n\t1.Si\n\t2.No\n");
 			scanf_s("%d", &siono);
 			switch (siono)
 			{
@@ -198,7 +205,8 @@ void mostrar_nivel_bebedero(Serial* Arduino)
 	float nivel2; bytes_recibidos = Send_and_Receive(Arduino, "MOSTRAR_NIVEL_BEBEDERO", -1, mensaje_in, &distancia);
 	if (bytes_recibidos != 0)
 	{
-		nivel2 = (float)distancia / 100; nivel2 = altura - nivel2;
+		nivel2 = (float)distancia / 100; 
+		nivel2 = altura - nivel2;
 		printf("\nEl nivel del agua de su bebedero es %.2f cm", nivel2);
 
 	}
@@ -227,7 +235,7 @@ void elegir_nivel_bebedero(Serial* Arduino)
 	float nivel, x; 
 	int altura = 13;
 	printf("\nç);
-	printf("\nElija el nivel de agua maximo al que quiere que este su piscina(en cm) :");
+	printf("\nElija la altura mínima a la que quiere que este el agua de su bebedero (en cm) :\n");
 	scanf_s("%d", &x); 
 	nivel = altura - x; 
 	bytes_recibidos = Send_and_Receive(Arduino, "MOSTRAR_NIVEL_AGUA", nivel, mensaje_in, &altura);

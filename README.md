@@ -201,7 +201,8 @@ void mostrar_nivel_bebedero(Serial* Arduino)
 	int bytes_recibidos;
 	char mensaje_in[255];
 	char mensaje_out[] = "MOSTRAR_NIVEL_BEBEDERO";
-	float altura = 13; int distancia;
+	float altura = 13;
+	int distancia;
 	float nivel2; bytes_recibidos = Send_and_Receive(Arduino, "MOSTRAR_NIVEL_BEBEDERO", -1, mensaje_in, &distancia);
 	if (bytes_recibidos != 0)
 	{

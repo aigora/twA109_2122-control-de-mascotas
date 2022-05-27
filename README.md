@@ -47,6 +47,7 @@ Automático del bebedero en función de la opinión del usuario.
 #define MS_ENTRE_INTENTOS 250 
 #define SI 1 
 #define NO 0
+#define LONGCAD 20
 
 #include <stdio.h> 
 #include <stdlib.h> 
@@ -55,6 +56,14 @@ Automático del bebedero en función de la opinión del usuario.
 #include <string.h>
 #include <conio.h> 
 #include"SerialClass/SerialClass.h"
+
+typedef struct
+{
+	float temp;
+	char dia[LONGCAD];
+
+}TEMPERATURA;
+
 
 // Funciones prototipo int menu_principal(void); void configura(void);
 
@@ -70,11 +79,16 @@ void apagar_luces(Serial*);
 void encender_luces(Serial*);
 void mostrar_nivel_bebedero(Serial*);
 void elegir_nivel_bebedero(Serial*);
+void leer_fichero_temperaturas(TEMPERATURA[], int*, int);
+int escribir_fichero_temperaturas(TEMPERATURA*, int );
 
 int main(void) 
 {
 	Serial* Arduino; char puerto[] = "COM5"; //Puerto serie al que está conectado Arduino int opc; // Opción del menú principal seleccionada
 	// Tareas de configuración y carga
+	TEMPERATURA* temperaturas;
+	int n = 7;
+	temperaturas = (TEMPERATURA*)malloc(sizeof(TEMPERATURA) * n);
 	configura();
 	Arduino = new Serial((char*)puerto);  // Establece la conexión con Arduino
 
@@ -89,6 +103,7 @@ int main(void)
 			break;
 		case 2:
 			mostrar_temp(Arduino);
+			escribir_fichero_temperaturas(temperaturas, n);
 			break;
 		case 3:
 			luces(Arduino);
@@ -128,12 +143,16 @@ void mostrar_temp(Serial* Arduino)
 {
 	int bytes_recibidos;
 	char mensaje_in[200];
+	TEMPERATURA* temperaturas;
+	int i = 0;
 	char mensaje_out[] = "MOSTRAR_TEMP";
 	int temp; float temp2;
 	bytes_recibidos = Send_and_Receive(Arduino, "MOSTRAR_TEMP", 1, mensaje_in, &temp);
 	if (bytes_recibidos != 0)
 	{ 
 		temp2 = (float)temp / 100; printf("\nLa temperatura de la caseta es %.2fºC", temp2);
+		(temperaturas + i)->temp = temp2;
+		i++;
 		if(temp2>=30){
 		
 		printf("La temperatura de la caseta es muy elevada,revise el estado de su mascota\n");
@@ -142,6 +161,69 @@ void mostrar_temp(Serial* Arduino)
 		{
 		printf("La temperatura de la caseta esta a una temperatura correcta\n");
 	        }
+}
+
+void leer_fichero_temperaturas(TEMPERATURA  temperaturas[], int* pnumero, int longitud)
+{
+	FILE* fichero; // Puntero para manipular el fichero
+	int num = 0; // Variable auxiliar para numero de temps leidas3
+	int i, pos; // Variable bucle y posicion final cadena
+	errno_t cod_error;
+	char intro[2];
+
+	cod_error = fopen_s(&fichero, "Temperaturas.txt", "rt"); // Se intenta abrir el fichero de texto
+	if (cod_error != 0)  // Si el fichero no se ha podido abrir
+		*pnumero = 0;
+	else  // Si el fichero ha podido abrirse 
+	{
+		fscanf_s(fichero, "%d", &num); // Se lee la cantidad de temps
+		if (num == 0) // Si esa cantidad es cero
+			*pnumero = 0; // La lista estar� vac�a
+		else  // Si hay registros para leer (seg�n el entero le�do)
+		{
+			if (num > longitud) // Si no hay memoria suficiente
+			{
+				printf("Memoria insuficiente para almacenar los datos del fichero\n");
+				*pnumero = 0;
+			}
+			else // Si hay memoria suficiente
+			{
+				fgets(intro, 2, fichero); // Saltamos el intro que hay tras el numero (Ascii 10 y 13)
+				for (i = 0; i < num; i++)  // Se leen los registros uno por uno
+				{
+					fgets((temperaturas + i)->dia, LONGCAD, fichero);
+					pos = strlen((temperaturas + i)->dia);
+					(temperaturas + i)->dia[pos - 1] = '\0';
+					fscanf_s(fichero, "%d", &(temperaturas + i)->temp);
+					fgets(intro, 2, fichero);
+				}
+				*pnumero = num;
+			}
+		}
+		fclose(fichero); // Se cierra el fichero
+	}
+}
+
+int escribir_fichero_temperaturas(TEMPERATURA* temperaturas, int numero)
+{
+	int i;
+	FILE* fichero;
+	errno_t err;
+
+	err = fopen_s(&fichero, "Temperaturas.txt", "wt");
+	if (err == 0) // Si el fichero se ha podido crear
+	{
+		fprintf(fichero, "%d\n", numero); // Se graba en el fichero el numero de usuarios
+		for (i = 0; i < numero; i++)
+		{
+			fprintf(fichero, "%s\n", (temperaturas + i)->dia);
+			fprintf(fichero, "%f\n", (temperaturas + i)->temp);
+		}
+		fclose(fichero);
+	}
+	else
+		printf("Se ha producido un problema a la hora de grabar el fichero de usuarios\n");
+	return err;
 }
 
 void luces(Serial* Arduino)

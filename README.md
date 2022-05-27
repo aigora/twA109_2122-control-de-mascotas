@@ -27,18 +27,18 @@ Fuente: https://www.luisllamas.es/medir-nivel-luz-con-arduino-y-fotoresistencia-
 
 ## Dinámica de la aplicación
 MENU:
-1. Dispensador de agua
-2. Iluminación
-3. Control temperatura de la caseta
-4. Automático de luces.
+1. Mostrar nivel del agua del bebedero
+2. Control temperatura de la caseta
+3. Iluminación
+4. Automático de agua.
 ## Opción 1
-El usuario deberá introducir la altura a la que quiere que esté el agua en función del recipiente. Si esta altura es inferior, se añadira agua automaticamente hasta que se consiga la altura deseada.
+El usuario podrá ver la altura a la que  esté el agua en función del recipiente. 
 ## Opción 2
-Las luces situadas en la fachada de la caseta sen encendaran al llegar cuando el usuario lo soicite.
-## Opción 3 
 Si se supera un cierto nivel de temperatura dentro de la caseta , el programa avisará al usuario.
+## Opción 3 
+Si se supera un cierto nivel de temperatura dentro de la caseta , el programa avisará al usuario.Las luces situadas en la fachada de la caseta sen encendaran al no haber luz de noche.
 ## Opción 4 
-Iluminación automática en función de la oscuridad.
+Automático del bebedero en función de la opinión del usuario.
 
 ## Codigo VISUAL
 
@@ -94,10 +94,10 @@ int main(void)
 			luces(Arduino);
 			break;
 		case 4:
-			automatico(Arduino);
+			elegir_nivel_bebedero(Arduino);
 			break;
-		case 6:
-			break;
+		case 5:
+			automatico(Arduino)break;
 		}
 		printf("\n\n");
 	} while (opc != 6);
@@ -112,9 +112,9 @@ do
 { 
 	printf("1 - Mostrar el nivel de agua del bebedero\n");
 	printf("2 - Leer temperatura de la caseta\n"); 
-	printf("3 - Encendido/Apagado de luces\n");
+	printf("3 - Automatico\n");
 	printf("4 - Elegir nivel del agua\n"); 
-	printf("5 - Automatico\n");
+	printf("5 -Encendido y apagado de luces\n");
 	printf("6 - Cerrar Aplicación\n");
 	printf("Seleccione opción: "); 
 	scanf_s("%d", &opcion); 
@@ -239,7 +239,7 @@ void elegir_nivel_bebedero(Serial* Arduino)
 	char mensaje_in[255];
 	char mensaje_out[] = "NIVEL_BEBEDERO_CONSIGNA"; 
 	float nivel, x; 
-	int altura = 13;
+	int altura = 15;
 	printf("\nç);
 	printf("\nElija la altura mínima a la que quiere que este el agua de su bebedero (en cm) :\n");
 	scanf_s("%d", &x); 
@@ -360,7 +360,7 @@ int led = 13;
 int TRIG = 10; //Variable que contiene el número del pin al cual conectemos la señal "trigger"
 int ECO = 9; //Variable que contiene el número del pin al cual conectamos la señal "echo"
 int estado = 0;
-int altura = 13; //Constante altura a la que se encuentra el sensor ultrasonido de la base de la piscina
+int altura = 15; //Constante altura a la que se encuentra el sensor ultrasonido de la base de la piscina
 int DURACION; //Variable duración para la función nivel_bebedero_consigna
 float DISTANCIA; //Variable distancia para la función nivel _bebedero_consigna
 Servo servo1 ;
@@ -436,7 +436,6 @@ void procesar_mensaje(void)
     temp = sensor.getTempCByIndex(0);
     temp = temp * 100;
     numero1 = int(temp);
-    Serial.println("TEMPERATURA_ACTUAL ");
     Serial.println(numero1);
   }
   else if (cadena.equals("ILUMINACION")) // Y así sucesivamente con todos los posibles mensajes

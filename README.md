@@ -29,7 +29,7 @@ Fuente: https://www.luisllamas.es/medir-nivel-luz-con-arduino-y-fotoresistencia-
 MENU:
 1. Mostrar nivel del agua del bebedero
 2. Control temperatura de la caseta
-3. AIluminación
+3. Iluminación
 4. Control de agua.
 ## Opción 1
 El usuario podrá ver la altura a la que  esté el agua en función del recipiente. 

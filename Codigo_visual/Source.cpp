@@ -110,7 +110,7 @@ void mostrar_temp(Serial* Arduino)
 
 	if (bytes_recibidos != 0)
 	{ 
-		temp2 = (float)41.03;
+		temp2 = (float)temp / 100;
 		(temperaturas + i)->temp = temp2;
 		i++;
 		printf("\nLa temperatura de la caseta es %.2f grados celsius \n", temp2);
@@ -258,7 +258,7 @@ void luces(Serial * Arduino)
 		{
 			nivel2 = (float)distancia / 100;
 			nivel2 = altura - nivel2;
-			printf("\nEl nivel del agua de su bebedero es 3.1 cm", nivel2);
+			printf("\nEl nivel del agua de su bebedero es %.1f cm", nivel2);
 
 		}
 	}
